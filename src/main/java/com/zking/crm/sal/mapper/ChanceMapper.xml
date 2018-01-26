@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.crm.sal.mapper.ChanceMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.crm.sal.model.Chance" >
+    <constructor >
+      <idArg column="chc_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="chc_source" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="chc_cust_name" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="chc_title" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="chc_rate" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="chc_linkman" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="chc_tel" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="chc_desc" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="chc_create_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="chc_create_by" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="chc_create_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="chc_due_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="chc_due_to" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="chc_due_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="chc_status" jdbcType="CHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <resultMap id="row" type="com.zking.crm.sal.model.Chance" >
+      <id column="chc_id" property="chcId" javaType="java.lang.Long" />
+      <result column="chc_source" property="chcSource" javaType="java.lang.String" />
+      <result column="chc_cust_name" property="chcCustName" javaType="java.lang.String" />
+      <result column="chc_title" property="chcTitle" javaType="java.lang.String" />
+      <result column="chc_rate" property="chcRate" javaType="java.lang.Integer" />
+      <result column="chc_linkman" property="chcLinkman" javaType="java.lang.String" />
+      <result column="chc_tel" property="chcTel" javaType="java.lang.String" />
+      <result column="chc_desc" property="chcDesc" javaType="java.lang.String" />
+      <result column="chc_create_id" property="chcCreateId" javaType="java.lang.Long" />
+      <result column="chc_create_by" property="chcCreateBy" javaType="java.lang.String" />
+      <result column="chc_create_date" property="chcCreateDate" javaType="java.util.Date" />
+      <result column="chc_due_id" property="chcDueId" javaType="java.lang.Long" />
+      <result column="chc_due_to" property="chcDueTo" javaType="java.lang.String" />
+      <result column="chc_due_date" property="chcDueDate" javaType="java.util.Date" />
+      <result column="chc_status" property="chcStatus" javaType="java.lang.String" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    chc_id, chc_source, chc_cust_name, chc_title, chc_rate, chc_linkman, chc_tel, chc_desc, 
+    chc_create_id, chc_create_by, chc_create_date, chc_due_id, chc_due_to, chc_due_date, 
+    chc_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sal_chance
+    where chc_id = #{chcId,jdbcType=BIGINT}
+  </select>
+  <select id="list" resultMap="row" parameterType="com.zking.crm.sal.model.Chance" >
+    select
+    <include refid="Base_Column_List" />
+    from sal_chance where 1=1
+    <if test="chcTitle != null" >
+      and  chc_title like #{chcTitle,jdbcType=VARCHAR}
+    </if>
+    <if test="chcCustName != null" >
+      and   chc_cust_name = #{chcCustName,jdbcType=VARCHAR}
+    </if>
+    <if test="chcLinkman != null" >
+      and   chc_linkman = #{chcLinkman,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sal_chance
+    where chc_id = #{chcId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zking.crm.sal.model.Chance" >
+    insert into sal_chance (chc_id, chc_source, chc_cust_name, 
+      chc_title, chc_rate, chc_linkman, 
+      chc_tel, chc_desc, chc_create_id, 
+      chc_create_by, chc_create_date, chc_due_id, 
+      chc_due_to, chc_due_date, chc_status
+      )
+    values (#{chcId,jdbcType=BIGINT}, #{chcSource,jdbcType=NVARCHAR}, #{chcCustName,jdbcType=NVARCHAR}, 
+      #{chcTitle,jdbcType=NVARCHAR}, #{chcRate,jdbcType=INTEGER}, #{chcLinkman,jdbcType=NVARCHAR}, 
+      #{chcTel,jdbcType=NVARCHAR}, #{chcDesc,jdbcType=NVARCHAR}, #{chcCreateId,jdbcType=BIGINT}, 
+      #{chcCreateBy,jdbcType=NVARCHAR}, #{chcCreateDate,jdbcType=TIMESTAMP}, #{chcDueId,jdbcType=BIGINT}, 
+      #{chcDueTo,jdbcType=NVARCHAR}, #{chcDueDate,jdbcType=TIMESTAMP}, #{chcStatus,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.crm.sal.model.Chance" >
+    insert into sal_chance
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="chcId != null" >
+        chc_id,
+      </if>
+      <if test="chcSource != null" >
+        chc_source,
+      </if>
+      <if test="chcCustName != null" >
+        chc_cust_name,
+      </if>
+      <if test="chcTitle != null" >
+        chc_title,
+      </if>
+      <if test="chcRate != null" >
+        chc_rate,
+      </if>
+      <if test="chcLinkman != null" >
+        chc_linkman,
+      </if>
+      <if test="chcTel != null" >
+        chc_tel,
+      </if>
+      <if test="chcDesc != null" >
+        chc_desc,
+      </if>
+      <if test="chcCreateId != null" >
+        chc_create_id,
+      </if>
+      <if test="chcCreateBy != null" >
+        chc_create_by,
+      </if>
+      <if test="chcCreateDate != null" >
+        chc_create_date,
+      </if>
+      <if test="chcDueId != null" >
+        chc_due_id,
+      </if>
+      <if test="chcDueTo != null" >
+        chc_due_to,
+      </if>
+      <if test="chcDueDate != null" >
+        chc_due_date,
+      </if>
+      <if test="chcStatus != null" >
+        chc_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="chcId != null" >
+        #{chcId,jdbcType=BIGINT},
+      </if>
+      <if test="chcSource != null" >
+        #{chcSource,jdbcType=NVARCHAR},
+      </if>
+      <if test="chcCustName != null" >
+        #{chcCustName,jdbcType=NVARCHAR},
+      </if>
+      <if test="chcTitle != null" >
+        #{chcTitle,jdbcType=NVARCHAR},
+      </if>
+      <if test="chcRate != null" >
+        #{chcRate,jdbcType=INTEGER},
+      </if>
+      <if test="chcLinkman != null" >
+        #{chcLinkman,jdbcType=NVARCHAR},
+      </if>
+      <if test="chcTel != null" >
+        #{chcTel,jdbcType=NVARCHAR},
+      </if>
+      <if test="chcDesc != null" >
+        #{chcDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="chcCreateId != null" >
+        #{chcCreateId,jdbcType=BIGINT},
+      </if>
+      <if test="chcCreateBy != null" >
+        #{chcCreateBy,jdbcType=NVARCHAR},
+      </if>
+      <if test="chcCreateDate != null" >
+        #{chcCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="chcDueId != null" >
+        #{chcDueId,jdbcType=BIGINT},
+      </if>
+      <if test="chcDueTo != null" >
+        #{chcDueTo,jdbcType=NVARCHAR},
+      </if>
+      <if test="chcDueDate != null" >
+        #{chcDueDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="chcStatus != null" >
+        #{chcStatus,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.crm.sal.model.Chance" >
+    update sal_chance
+    <set >
+      <if test="chcSource != null" >
+        chc_source = #{chcSource,jdbcType=NVARCHAR},
+      </if>
+      <if test="chcCustName != null" >
+        chc_cust_name = #{chcCustName,jdbcType=NVARCHAR},
+      </if>
+      <if test="chcTitle != null" >
+        chc_title = #{chcTitle,jdbcType=NVARCHAR},
+      </if>
+      <if test="chcRate != null" >
+        chc_rate = #{chcRate,jdbcType=INTEGER},
+      </if>
+      <if test="chcLinkman != null" >
+        chc_linkman = #{chcLinkman,jdbcType=NVARCHAR},
+      </if>
+      <if test="chcTel != null" >
+        chc_tel = #{chcTel,jdbcType=NVARCHAR},
+      </if>
+      <if test="chcDesc != null" >
+        chc_desc = #{chcDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="chcCreateId != null" >
+        chc_create_id = #{chcCreateId,jdbcType=BIGINT},
+      </if>
+      <if test="chcCreateBy != null" >
+        chc_create_by = #{chcCreateBy,jdbcType=NVARCHAR},
+      </if>
+      <if test="chcCreateDate != null" >
+        chc_create_date = #{chcCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="chcDueId != null" >
+        chc_due_id = #{chcDueId,jdbcType=BIGINT},
+      </if>
+      <if test="chcDueTo != null" >
+        chc_due_to = #{chcDueTo,jdbcType=NVARCHAR},
+      </if>
+      <if test="chcDueDate != null" >
+        chc_due_date = #{chcDueDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="chcStatus != null" >
+        chc_status = #{chcStatus,jdbcType=CHAR},
+      </if>
+    </set>
+    where chc_id = #{chcId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.crm.sal.model.Chance" >
+    update sal_chance
+    set chc_source = #{chcSource,jdbcType=NVARCHAR},
+      chc_cust_name = #{chcCustName,jdbcType=NVARCHAR},
+      chc_title = #{chcTitle,jdbcType=NVARCHAR},
+      chc_rate = #{chcRate,jdbcType=INTEGER},
+      chc_linkman = #{chcLinkman,jdbcType=NVARCHAR},
+      chc_tel = #{chcTel,jdbcType=NVARCHAR},
+      chc_desc = #{chcDesc,jdbcType=NVARCHAR},
+      chc_create_id = #{chcCreateId,jdbcType=BIGINT},
+      chc_create_by = #{chcCreateBy,jdbcType=NVARCHAR},
+      chc_create_date = #{chcCreateDate,jdbcType=TIMESTAMP},
+      chc_due_id = #{chcDueId,jdbcType=BIGINT},
+      chc_due_to = #{chcDueTo,jdbcType=NVARCHAR},
+      chc_due_date = #{chcDueDate,jdbcType=TIMESTAMP},
+      chc_status = #{chcStatus,jdbcType=CHAR}
+    where chc_id = #{chcId,jdbcType=BIGINT}
+  </update>
+</mapper>

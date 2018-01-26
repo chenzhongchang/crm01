@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.crm.bas.mapper.DictMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.crm.bas.model.Dict" >
+    <constructor >
+      <idArg column="dict_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="dict_type" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="dict_item" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="dict_value" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="dict_is_editable" jdbcType="BIT" javaType="java.lang.Boolean" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dict_id, dict_type, dict_item, dict_value, dict_is_editable
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bas_dict
+    where dict_id = #{dictId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from bas_dict
+    where dict_id = #{dictId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zking.crm.bas.model.Dict" >
+    insert into bas_dict (dict_id, dict_type, dict_item, 
+      dict_value, dict_is_editable)
+    values (#{dictId,jdbcType=BIGINT}, #{dictType,jdbcType=NVARCHAR}, #{dictItem,jdbcType=NVARCHAR}, 
+      #{dictValue,jdbcType=NVARCHAR}, #{dictIsEditable,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.crm.bas.model.Dict" >
+    insert into bas_dict
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dictId != null" >
+        dict_id,
+      </if>
+      <if test="dictType != null" >
+        dict_type,
+      </if>
+      <if test="dictItem != null" >
+        dict_item,
+      </if>
+      <if test="dictValue != null" >
+        dict_value,
+      </if>
+      <if test="dictIsEditable != null" >
+        dict_is_editable,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dictId != null" >
+        #{dictId,jdbcType=BIGINT},
+      </if>
+      <if test="dictType != null" >
+        #{dictType,jdbcType=NVARCHAR},
+      </if>
+      <if test="dictItem != null" >
+        #{dictItem,jdbcType=NVARCHAR},
+      </if>
+      <if test="dictValue != null" >
+        #{dictValue,jdbcType=NVARCHAR},
+      </if>
+      <if test="dictIsEditable != null" >
+        #{dictIsEditable,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.crm.bas.model.Dict" >
+    update bas_dict
+    <set >
+      <if test="dictType != null" >
+        dict_type = #{dictType,jdbcType=NVARCHAR},
+      </if>
+      <if test="dictItem != null" >
+        dict_item = #{dictItem,jdbcType=NVARCHAR},
+      </if>
+      <if test="dictValue != null" >
+        dict_value = #{dictValue,jdbcType=NVARCHAR},
+      </if>
+      <if test="dictIsEditable != null" >
+        dict_is_editable = #{dictIsEditable,jdbcType=BIT},
+      </if>
+    </set>
+    where dict_id = #{dictId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.crm.bas.model.Dict" >
+    update bas_dict
+    set dict_type = #{dictType,jdbcType=NVARCHAR},
+      dict_item = #{dictItem,jdbcType=NVARCHAR},
+      dict_value = #{dictValue,jdbcType=NVARCHAR},
+      dict_is_editable = #{dictIsEditable,jdbcType=BIT}
+    where dict_id = #{dictId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zking.crm.bas.mapper.TreeNodeMapper">
+  <resultMap id="BaseResultMap" type="com.zking.crm.bas.model.TreeNode">
+    <constructor>
+      <idArg column="tree_node_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="tree_node_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="tree_node_type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="position" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="parent_node_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <resultMap id="row" type="com.zking.crm.bas.model.TreeNode">
+      <id column="tree_node_id" javaType="java.lang.Integer" property="treeNodeId" />
+      <result column="tree_node_name" javaType="java.lang.String" property="treeNodeName" />
+      <result column="tree_node_type" javaType="java.lang.Integer" property="treeNodeType" />
+      <result column="position" javaType="java.lang.Long" property="position" />
+      <result column="parent_node_id" javaType="java.lang.Integer" property="parentNodeId" />
+      <result column="url" javaType="java.lang.String" property="url" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    tree_node_id, tree_node_name, tree_node_type, position, parent_node_id, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bas_tree_node
+    where tree_node_id = #{treeNodeId,jdbcType=INTEGER}
+  </select>
+    <select id="list" parameterType="com.zking.crm.bas.model.TreeNode" resultMap="row">
+      select * from bas_tree_node where 1=1
+      <if test="parentNodeId == null || parentNodeId == -1">
+        and parent_node_id is null
+      </if>
+      <if test="parentNodeId != null">
+        and parent_node_id =  #{parentNodeId,jdbcType=INTEGER}
+      </if>
+         order by position asc
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bas_tree_node
+    where tree_node_id = #{treeNodeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.crm.bas.model.TreeNode">
+    insert into bas_tree_node (tree_node_id, tree_node_name, tree_node_type, 
+      position, parent_node_id, url
+      )
+    values (#{treeNodeId,jdbcType=INTEGER}, #{treeNodeName,jdbcType=VARCHAR}, #{treeNodeType,jdbcType=INTEGER}, 
+      #{position,jdbcType=BIGINT}, #{parentNodeId,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.crm.bas.model.TreeNode">
+    insert into bas_tree_node
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="treeNodeId != null">
+        tree_node_id,
+      </if>
+      <if test="treeNodeName != null">
+        tree_node_name,
+      </if>
+      <if test="treeNodeType != null">
+        tree_node_type,
+      </if>
+      <if test="position != null">
+        position,
+      </if>
+      <if test="parentNodeId != null">
+        parent_node_id,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="treeNodeId != null">
+        #{treeNodeId,jdbcType=INTEGER},
+      </if>
+      <if test="treeNodeName != null">
+        #{treeNodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="treeNodeType != null">
+        #{treeNodeType,jdbcType=INTEGER},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=BIGINT},
+      </if>
+      <if test="parentNodeId != null">
+        #{parentNodeId,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.crm.bas.model.TreeNode">
+    update bas_tree_node
+    <set>
+      <if test="treeNodeName != null">
+        tree_node_name = #{treeNodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="treeNodeType != null">
+        tree_node_type = #{treeNodeType,jdbcType=INTEGER},
+      </if>
+      <if test="position != null">
+        position = #{position,jdbcType=BIGINT},
+      </if>
+      <if test="parentNodeId != null">
+        parent_node_id = #{parentNodeId,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tree_node_id = #{treeNodeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.crm.bas.model.TreeNode">
+    update bas_tree_node
+    set tree_node_name = #{treeNodeName,jdbcType=VARCHAR},
+      tree_node_type = #{treeNodeType,jdbcType=INTEGER},
+      position = #{position,jdbcType=BIGINT},
+      parent_node_id = #{parentNodeId,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR}
+    where tree_node_id = #{treeNodeId,jdbcType=INTEGER}
+  </update>
+</mapper>

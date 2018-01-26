@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.crm.cst.mapper.CustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.crm.cst.model.Customer" >
+    <constructor >
+      <idArg column="cust_no" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="cust_name" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="cust_region" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="cust_manager_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="cust_manager_name" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="cust_level" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="cust_level_label" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="cust_satisfy" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="cust_credit" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="cust_addr" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="cust_zip" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="cust_tel" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="cust_fax" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="cust_website" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="cust_licence_no" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="cust_chieftain" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="cust_bankroll" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="cust_turnover" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="cust_bank" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="cust_bank_account" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="cust_local_tax_no" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="cust_national_tax_no" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="cust_status" jdbcType="CHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <resultMap id="row" type="com.zking.crm.cst.model.Customer" >
+      <id column="cust_no" property="custNo" javaType="java.lang.String" />
+      <result column="cust_name" property="custName" javaType="java.lang.String" />
+      <result column="cust_region" property="custRegion" javaType="java.lang.String" />
+      <result column="cust_manager_id" property="custManagerId" javaType="java.lang.Long" />
+      <result column="cust_manager_name" property="custManagerName" javaType="java.lang.String" />
+      <result column="cust_level" property="custLevel" javaType="java.lang.Integer" />
+      <result column="cust_level_label" property="custLevelLabel" javaType="java.lang.String" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cust_no, cust_name, cust_region, cust_manager_id, cust_manager_name, cust_level, 
+    cust_level_label, cust_satisfy, cust_credit, cust_addr, cust_zip, cust_tel, cust_fax, 
+    cust_website, cust_licence_no, cust_chieftain, cust_bankroll, cust_turnover, cust_bank, 
+    cust_bank_account, cust_local_tax_no, cust_national_tax_no, cust_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from cst_customer
+    where cust_no = #{custNo,jdbcType=CHAR}
+  </select>
+    <select id="listCustomeer" resultMap="row" resultType="com.zking.crm.cst.model.Customer">
+    select cust_no, cust_name, cust_region, cust_manager_id, cust_manager_name, cust_level, cust_level_label, cust_satisfy, cust_credit, cust_addr, cust_zip, cust_tel, cust_fax, cust_website, cust_licence_no, cust_chieftain, cust_bankroll, cust_turnover, cust_bank, cust_bank_account, cust_local_tax_no, cust_national_tax_no, cust_status
+    from cst_customer where 1=1
+      <if test="custNo != null" >
+        and cust_no = #{custNo,jdbcType=CHAR}
+      </if>
+      <if test="custName != null" >
+        and cust_name = #{custName,jdbcType=NVARCHAR}
+      </if>
+      <if test="custRegion != null" >
+        and cust_region = #{custRegion,jdbcType=NVARCHAR}
+      </if>
+      <if test="custManagerName != null" >
+        and cust_manager_name = #{custManagerName,jdbcType=NVARCHAR}
+      </if>
+      <if test="custLevel != null" >
+        and cust_level = #{custLevel,jdbcType=INTEGER}
+      </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from cst_customer
+    where cust_no = #{custNo,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zking.crm.cst.model.Customer" >
+    insert into cst_customer (cust_no, cust_name, cust_region, 
+      cust_manager_id, cust_manager_name, cust_level, 
+      cust_level_label, cust_satisfy, cust_credit, 
+      cust_addr, cust_zip, cust_tel, 
+      cust_fax, cust_website, cust_licence_no, 
+      cust_chieftain, cust_bankroll, cust_turnover, 
+      cust_bank, cust_bank_account, cust_local_tax_no, 
+      cust_national_tax_no, cust_status)
+    values (#{custNo,jdbcType=CHAR}, #{custName,jdbcType=NVARCHAR}, #{custRegion,jdbcType=NVARCHAR},
+      #{custManagerId,jdbcType=BIGINT}, #{custManagerName,jdbcType=NVARCHAR}, #{custLevel,jdbcType=INTEGER}, 
+      #{custLevelLabel,jdbcType=NVARCHAR}, #{custSatisfy,jdbcType=INTEGER}, #{custCredit,jdbcType=INTEGER}, 
+      #{custAddr,jdbcType=NVARCHAR}, #{custZip,jdbcType=CHAR}, #{custTel,jdbcType=NVARCHAR}, 
+      #{custFax,jdbcType=NVARCHAR}, #{custWebsite,jdbcType=NVARCHAR}, #{custLicenceNo,jdbcType=NVARCHAR}, 
+      #{custChieftain,jdbcType=NVARCHAR}, #{custBankroll,jdbcType=BIGINT}, #{custTurnover,jdbcType=BIGINT}, 
+      #{custBank,jdbcType=NVARCHAR}, #{custBankAccount,jdbcType=NVARCHAR}, #{custLocalTaxNo,jdbcType=NVARCHAR}, 
+      #{custNationalTaxNo,jdbcType=NVARCHAR}, #{custStatus,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.crm.cst.model.Customer" >
+    insert into cst_customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="custNo != null" >
+        cust_no,
+      </if>
+      <if test="custName != null" >
+        cust_name,
+      </if>
+      <if test="custRegion != null" >
+        cust_region,
+      </if>
+      <if test="custManagerId != null" >
+        cust_manager_id,
+      </if>
+      <if test="custManagerName != null" >
+        cust_manager_name,
+      </if>
+      <if test="custLevel != null" >
+        cust_level,
+      </if>
+      <if test="custLevelLabel != null" >
+        cust_level_label,
+      </if>
+      <if test="custSatisfy != null" >
+        cust_satisfy,
+      </if>
+      <if test="custCredit != null" >
+        cust_credit,
+      </if>
+      <if test="custAddr != null" >
+        cust_addr,
+      </if>
+      <if test="custZip != null" >
+        cust_zip,
+      </if>
+      <if test="custTel != null" >
+        cust_tel,
+      </if>
+      <if test="custFax != null" >
+        cust_fax,
+      </if>
+      <if test="custWebsite != null" >
+        cust_website,
+      </if>
+      <if test="custLicenceNo != null" >
+        cust_licence_no,
+      </if>
+      <if test="custChieftain != null" >
+        cust_chieftain,
+      </if>
+      <if test="custBankroll != null" >
+        cust_bankroll,
+      </if>
+      <if test="custTurnover != null" >
+        cust_turnover,
+      </if>
+      <if test="custBank != null" >
+        cust_bank,
+      </if>
+      <if test="custBankAccount != null" >
+        cust_bank_account,
+      </if>
+      <if test="custLocalTaxNo != null" >
+        cust_local_tax_no,
+      </if>
+      <if test="custNationalTaxNo != null" >
+        cust_national_tax_no,
+      </if>
+      <if test="custStatus != null" >
+        cust_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="custNo != null" >
+        #{custNo,jdbcType=CHAR},
+      </if>
+      <if test="custName != null" >
+        #{custName,jdbcType=NVARCHAR},
+      </if>
+      <if test="custRegion != null" >
+        #{custRegion,jdbcType=NVARCHAR},
+      </if>
+      <if test="custManagerId != null" >
+        #{custManagerId,jdbcType=BIGINT},
+      </if>
+      <if test="custManagerName != null" >
+        #{custManagerName,jdbcType=NVARCHAR},
+      </if>
+      <if test="custLevel != null" >
+        #{custLevel,jdbcType=INTEGER},
+      </if>
+      <if test="custLevelLabel != null" >
+        #{custLevelLabel,jdbcType=NVARCHAR},
+      </if>
+      <if test="custSatisfy != null" >
+        #{custSatisfy,jdbcType=INTEGER},
+      </if>
+      <if test="custCredit != null" >
+        #{custCredit,jdbcType=INTEGER},
+      </if>
+      <if test="custAddr != null" >
+        #{custAddr,jdbcType=NVARCHAR},
+      </if>
+      <if test="custZip != null" >
+        #{custZip,jdbcType=CHAR},
+      </if>
+      <if test="custTel != null" >
+        #{custTel,jdbcType=NVARCHAR},
+      </if>
+      <if test="custFax != null" >
+        #{custFax,jdbcType=NVARCHAR},
+      </if>
+      <if test="custWebsite != null" >
+        #{custWebsite,jdbcType=NVARCHAR},
+      </if>
+      <if test="custLicenceNo != null" >
+        #{custLicenceNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="custChieftain != null" >
+        #{custChieftain,jdbcType=NVARCHAR},
+      </if>
+      <if test="custBankroll != null" >
+        #{custBankroll,jdbcType=BIGINT},
+      </if>
+      <if test="custTurnover != null" >
+        #{custTurnover,jdbcType=BIGINT},
+      </if>
+      <if test="custBank != null" >
+        #{custBank,jdbcType=NVARCHAR},
+      </if>
+      <if test="custBankAccount != null" >
+        #{custBankAccount,jdbcType=NVARCHAR},
+      </if>
+      <if test="custLocalTaxNo != null" >
+        #{custLocalTaxNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="custNationalTaxNo != null" >
+        #{custNationalTaxNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="custStatus != null" >
+        #{custStatus,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.crm.cst.model.Customer" >
+    update cst_customer
+    <set >
+      <if test="custName != null" >
+        cust_name = #{custName,jdbcType=NVARCHAR},
+      </if>
+      <if test="custRegion != null" >
+        cust_region = #{custRegion,jdbcType=NVARCHAR},
+      </if>
+      <if test="custManagerId != null" >
+        cust_manager_id = #{custManagerId,jdbcType=BIGINT},
+      </if>
+      <if test="custManagerName != null" >
+        cust_manager_name = #{custManagerName,jdbcType=NVARCHAR},
+      </if>
+      <if test="custLevel != null" >
+        cust_level = #{custLevel,jdbcType=INTEGER},
+      </if>
+      <if test="custLevelLabel != null" >
+        cust_level_label = #{custLevelLabel,jdbcType=NVARCHAR},
+      </if>
+      <if test="custSatisfy != null" >
+        cust_satisfy = #{custSatisfy,jdbcType=INTEGER},
+      </if>
+      <if test="custCredit != null" >
+        cust_credit = #{custCredit,jdbcType=INTEGER},
+      </if>
+      <if test="custAddr != null" >
+        cust_addr = #{custAddr,jdbcType=NVARCHAR},
+      </if>
+      <if test="custZip != null" >
+        cust_zip = #{custZip,jdbcType=CHAR},
+      </if>
+      <if test="custTel != null" >
+        cust_tel = #{custTel,jdbcType=NVARCHAR},
+      </if>
+      <if test="custFax != null" >
+        cust_fax = #{custFax,jdbcType=NVARCHAR},
+      </if>
+      <if test="custWebsite != null" >
+        cust_website = #{custWebsite,jdbcType=NVARCHAR},
+      </if>
+      <if test="custLicenceNo != null" >
+        cust_licence_no = #{custLicenceNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="custChieftain != null" >
+        cust_chieftain = #{custChieftain,jdbcType=NVARCHAR},
+      </if>
+      <if test="custBankroll != null" >
+        cust_bankroll = #{custBankroll,jdbcType=BIGINT},
+      </if>
+      <if test="custTurnover != null" >
+        cust_turnover = #{custTurnover,jdbcType=BIGINT},
+      </if>
+      <if test="custBank != null" >
+        cust_bank = #{custBank,jdbcType=NVARCHAR},
+      </if>
+      <if test="custBankAccount != null" >
+        cust_bank_account = #{custBankAccount,jdbcType=NVARCHAR},
+      </if>
+      <if test="custLocalTaxNo != null" >
+        cust_local_tax_no = #{custLocalTaxNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="custNationalTaxNo != null" >
+        cust_national_tax_no = #{custNationalTaxNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="custStatus != null" >
+        cust_status = #{custStatus,jdbcType=CHAR},
+      </if>
+    </set>
+    where cust_no = #{custNo,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.crm.cst.model.Customer" >
+    update cst_customer
+    set cust_name = #{custName,jdbcType=NVARCHAR},
+      cust_region = #{custRegion,jdbcType=NVARCHAR},
+      cust_manager_id = #{custManagerId,jdbcType=BIGINT},
+      cust_manager_name = #{custManagerName,jdbcType=NVARCHAR},
+      cust_level = #{custLevel,jdbcType=INTEGER},
+      cust_level_label = #{custLevelLabel,jdbcType=NVARCHAR},
+      cust_satisfy = #{custSatisfy,jdbcType=INTEGER},
+      cust_credit = #{custCredit,jdbcType=INTEGER},
+      cust_addr = #{custAddr,jdbcType=NVARCHAR},
+      cust_zip = #{custZip,jdbcType=CHAR},
+      cust_tel = #{custTel,jdbcType=NVARCHAR},
+      cust_fax = #{custFax,jdbcType=NVARCHAR},
+      cust_website = #{custWebsite,jdbcType=NVARCHAR},
+      cust_licence_no = #{custLicenceNo,jdbcType=NVARCHAR},
+      cust_chieftain = #{custChieftain,jdbcType=NVARCHAR},
+      cust_bankroll = #{custBankroll,jdbcType=BIGINT},
+      cust_turnover = #{custTurnover,jdbcType=BIGINT},
+      cust_bank = #{custBank,jdbcType=NVARCHAR},
+      cust_bank_account = #{custBankAccount,jdbcType=NVARCHAR},
+      cust_local_tax_no = #{custLocalTaxNo,jdbcType=NVARCHAR},
+      cust_national_tax_no = #{custNationalTaxNo,jdbcType=NVARCHAR},
+      cust_status = #{custStatus,jdbcType=CHAR}
+    where cust_no = #{custNo,jdbcType=CHAR}
+  </update>
+</mapper>

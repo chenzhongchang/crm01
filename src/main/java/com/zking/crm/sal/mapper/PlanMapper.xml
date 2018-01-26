@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.crm.sal.mapper.PlanMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.crm.sal.model.Plan" >
+    <constructor >
+      <idArg column="pla_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="pla_chc_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="pla_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="pla_todo" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="pla_result" jdbcType="NVARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pla_id, pla_chc_id, pla_date, pla_todo, pla_result
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sal_plan
+    where pla_id = #{plaId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sal_plan
+    where pla_id = #{plaId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zking.crm.sal.model.Plan" >
+    insert into sal_plan (pla_id, pla_chc_id, pla_date, 
+      pla_todo, pla_result)
+    values (#{plaId,jdbcType=BIGINT}, #{plaChcId,jdbcType=BIGINT}, #{plaDate,jdbcType=TIMESTAMP}, 
+      #{plaTodo,jdbcType=NVARCHAR}, #{plaResult,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.crm.sal.model.Plan" >
+    insert into sal_plan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="plaId != null" >
+        pla_id,
+      </if>
+      <if test="plaChcId != null" >
+        pla_chc_id,
+      </if>
+      <if test="plaDate != null" >
+        pla_date,
+      </if>
+      <if test="plaTodo != null" >
+        pla_todo,
+      </if>
+      <if test="plaResult != null" >
+        pla_result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="plaId != null" >
+        #{plaId,jdbcType=BIGINT},
+      </if>
+      <if test="plaChcId != null" >
+        #{plaChcId,jdbcType=BIGINT},
+      </if>
+      <if test="plaDate != null" >
+        #{plaDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="plaTodo != null" >
+        #{plaTodo,jdbcType=NVARCHAR},
+      </if>
+      <if test="plaResult != null" >
+        #{plaResult,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.crm.sal.model.Plan" >
+    update sal_plan
+    <set >
+      <if test="plaChcId != null" >
+        pla_chc_id = #{plaChcId,jdbcType=BIGINT},
+      </if>
+      <if test="plaDate != null" >
+        pla_date = #{plaDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="plaTodo != null" >
+        pla_todo = #{plaTodo,jdbcType=NVARCHAR},
+      </if>
+      <if test="plaResult != null" >
+        pla_result = #{plaResult,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where pla_id = #{plaId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.crm.sal.model.Plan" >
+    update sal_plan
+    set pla_chc_id = #{plaChcId,jdbcType=BIGINT},
+      pla_date = #{plaDate,jdbcType=TIMESTAMP},
+      pla_todo = #{plaTodo,jdbcType=NVARCHAR},
+      pla_result = #{plaResult,jdbcType=NVARCHAR}
+    where pla_id = #{plaId,jdbcType=BIGINT}
+  </update>
+</mapper>

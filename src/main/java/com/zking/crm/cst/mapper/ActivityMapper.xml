@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.crm.cst.mapper.ActivityMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.crm.cst.model.Activity" >
+    <constructor >
+      <idArg column="atv_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="atv_cust_no" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="atv_cust_name" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="atv_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="atv_place" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="atv_title" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="atv_remark" jdbcType="NVARCHAR" javaType="java.lang.String" />
+      <arg column="atv_desc" jdbcType="NVARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <resultMap id="row" type="com.zking.crm.cst.model.Activity" >
+      <id column="atv_id" property="atvId" javaType="java.lang.Long" />
+      <result column="atv_cust_no" property="atvCustNo" javaType="java.lang.String" />
+      <result column="atv_cust_name" property="atvCustName" javaType="java.lang.String" />
+      <result column="atv_date" property="atvDate" javaType="java.util.Date" />
+      <result column="atv_place" property="atvPlace" javaType="java.lang.String" />
+      <result column="atv_title" property="atvTitle" javaType="java.lang.String" />
+      <result column="atv_remark" property="atvRemark" javaType="java.lang.String" />
+      <result column="atv_desc" property="atvDesc" javaType="java.lang.String" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    atv_id, atv_cust_no, atv_cust_name, atv_date, atv_place, atv_title, atv_remark, atv_desc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cst_activity
+    where atv_id = #{atvId,jdbcType=BIGINT}
+  </select>
+    <select id="list" resultMap="row" parameterType="com.zking.crm.cst.model.Activity" >
+    select a.atv_id, a.atv_cust_no, a.atv_cust_name, a.atv_date, a.atv_place, a.atv_title, a.atv_remark, a.atv_desc
+    from cst_activity a inner join cst_customer c on a.atv_cust_no = c.cust_no
+    where 1=1
+      <if test="atvCustName != null or atvCustNo != null" >
+    and c.cust_name like #{atvCustName,jdbcType=VARCHAR} or c.cust_no = #{atvCustNo,jdbcType=VARCHAR}
+       </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cst_activity
+    where atv_id = #{atvId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zking.crm.cst.model.Activity" >
+    insert into cst_activity (atv_id, atv_cust_no, atv_cust_name, 
+      atv_date, atv_place, atv_title, 
+      atv_remark, atv_desc)
+    values (#{atvId,jdbcType=BIGINT}, #{atvCustNo,jdbcType=CHAR}, #{atvCustName,jdbcType=NVARCHAR}, 
+      #{atvDate,jdbcType=TIMESTAMP}, #{atvPlace,jdbcType=NVARCHAR}, #{atvTitle,jdbcType=NVARCHAR}, 
+      #{atvRemark,jdbcType=NVARCHAR}, #{atvDesc,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.crm.cst.model.Activity" >
+    insert into cst_activity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="atvId != null" >
+        atv_id,
+      </if>
+      <if test="atvCustNo != null" >
+        atv_cust_no,
+      </if>
+      <if test="atvCustName != null" >
+        atv_cust_name,
+      </if>
+      <if test="atvDate != null" >
+        atv_date,
+      </if>
+      <if test="atvPlace != null" >
+        atv_place,
+      </if>
+      <if test="atvTitle != null" >
+        atv_title,
+      </if>
+      <if test="atvRemark != null" >
+        atv_remark,
+      </if>
+      <if test="atvDesc != null" >
+        atv_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="atvId != null" >
+        #{atvId,jdbcType=BIGINT},
+      </if>
+      <if test="atvCustNo != null" >
+        #{atvCustNo,jdbcType=CHAR},
+      </if>
+      <if test="atvCustName != null" >
+        #{atvCustName,jdbcType=NVARCHAR},
+      </if>
+      <if test="atvDate != null" >
+        #{atvDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="atvPlace != null" >
+        #{atvPlace,jdbcType=NVARCHAR},
+      </if>
+      <if test="atvTitle != null" >
+        #{atvTitle,jdbcType=NVARCHAR},
+      </if>
+      <if test="atvRemark != null" >
+        #{atvRemark,jdbcType=NVARCHAR},
+      </if>
+      <if test="atvDesc != null" >
+        #{atvDesc,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.crm.cst.model.Activity" >
+    update cst_activity
+    <set >
+      <if test="atvCustNo != null" >
+        atv_cust_no = #{atvCustNo,jdbcType=CHAR},
+      </if>
+      <if test="atvCustName != null" >
+        atv_cust_name = #{atvCustName,jdbcType=NVARCHAR},
+      </if>
+      <if test="atvDate != null" >
+        atv_date = #{atvDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="atvPlace != null" >
+        atv_place = #{atvPlace,jdbcType=NVARCHAR},
+      </if>
+      <if test="atvTitle != null" >
+        atv_title = #{atvTitle,jdbcType=NVARCHAR},
+      </if>
+      <if test="atvRemark != null" >
+        atv_remark = #{atvRemark,jdbcType=NVARCHAR},
+      </if>
+      <if test="atvDesc != null" >
+        atv_desc = #{atvDesc,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where atv_id = #{atvId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.crm.cst.model.Activity" >
+    update cst_activity
+    set atv_cust_no = #{atvCustNo,jdbcType=CHAR},
+      atv_cust_name = #{atvCustName,jdbcType=NVARCHAR},
+      atv_date = #{atvDate,jdbcType=TIMESTAMP},
+      atv_place = #{atvPlace,jdbcType=NVARCHAR},
+      atv_title = #{atvTitle,jdbcType=NVARCHAR},
+      atv_remark = #{atvRemark,jdbcType=NVARCHAR},
+      atv_desc = #{atvDesc,jdbcType=NVARCHAR}
+    where atv_id = #{atvId,jdbcType=BIGINT}
+  </update>
+</mapper>
