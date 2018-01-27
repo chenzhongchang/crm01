@@ -12,6 +12,7 @@ public class Test {
          SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
 //        String  = sdf.format(d);
 
+        System.out.println("第一次提交");
         System.out.println(sdf.format(d));
     }
 }
