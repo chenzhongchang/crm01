@@ -1,5 +1,8 @@
 package com.zking.crm.sal.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.zking.util.StringUtils;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -24,19 +27,25 @@ public class Chance {
 
     private String chcCreateBy;
 
+    @JsonFormat(pattern = "yyyy年MM月dd日")
     private Date chcCreateDate;
 
     private Long chcDueId;
 
     private String chcDueTo;
 
+    @JsonFormat(pattern = "yyyy年MM月dd日")
     private Date chcDueDate;
 
     private String chcStatus;
 
+
     //paramenters
-    private String dateName;
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
+    private String action;
+    private String forward;
+    private String cdateName;
+    private String ddateName;
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
     public Chance(Long chcId, String chcSource, String chcCustName, String chcTitle, Integer chcRate, String chcLinkman, String chcTel, String chcDesc, Long chcCreateId, String chcCreateBy, Date chcCreateDate, Long chcDueId, String chcDueTo, Date chcDueDate, String chcStatus) {
         this.chcId = chcId;
@@ -147,6 +156,11 @@ public class Chance {
     public void setChcCreateDate(Date chcCreateDate) {
         this.chcCreateDate = chcCreateDate;
     }
+    public void setChcCreateDate(String chcCreateDate) {
+        if(StringUtils.isNotBlank(chcCreateDate)) {
+            this.cdateName = chcCreateDate;
+        }
+    }
 
     public Long getChcDueId() {
         return chcDueId;
@@ -171,6 +185,11 @@ public class Chance {
     public void setChcDueDate(Date chcDueDate) {
         this.chcDueDate = chcDueDate;
     }
+    public void setChcDueDate(String chcDueDate) {
+        if(StringUtils.isNotBlank(chcDueDate)){
+            this.ddateName = chcDueDate;
+        }
+    }
 
     public String getChcStatus() {
         return chcStatus;
@@ -180,12 +199,36 @@ public class Chance {
         this.chcStatus = chcStatus;
     }
 
-    public String getDateName() {
-        return dateName;
+    public String getCdateName() {
+        return cdateName;
     }
 
-    public void setDateName(Date dateName) {
-        this.dateName = sdf.format(dateName);
+    public void setCdateName(String cdateName) {
+        this.cdateName = cdateName;
+    }
+
+    public String getDdateName() {
+        return ddateName;
+    }
+
+    public void setDdateName(String ddateName) {
+        this.ddateName = ddateName;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+
+    public String getForward() {
+        return forward;
+    }
+
+    public void setForward(String forward) {
+        this.forward = forward;
     }
 
     @Override

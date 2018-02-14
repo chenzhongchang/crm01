@@ -3,7 +3,6 @@
 <html>
 <%@include file="/common/hear.jsp"%>
 <script type="text/javascript">
-    var contextPath ="<%=request.getContextPath()%>";
     $(function(){
         $(".easyui-tree").each(function(){
             $(this).tree({
@@ -15,12 +14,8 @@
             });
         });
     });
-
     function doOpenTab(href){
-        alert(href);
-//     $('#id名').html('要替换的内容');
         $("#myTabs").html('<iframe scrolling="no" framebordeer="0" src="' + href + '" style="width: 99%;height: 99%;"></iframe>');
-// 		 $("#myTabs").append('<iframe scrolling="no" framebordeer="0" src="' + href + '" style="width: 99%;height: 99%;"></iframe>');
     }
 </script>
 </head>

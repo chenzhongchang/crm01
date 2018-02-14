@@ -29,7 +29,6 @@ public class TreeNodeController {
     public List<Map<String, Object>> list(HttpServletRequest request, HttpServletResponse response){
         String parentNodeId = request.getParameter("id");
         String forward = request.getParameter("forward");
-        System.out.println("parentNodeId:"+parentNodeId+",forward:"+forward);
         TreeNode treeNode = new TreeNode();
         treeNode.setParentNodeId(parentNodeId);
         List<TreeNode> list = treeNodeBiz.list(treeNode);
@@ -47,7 +46,6 @@ public class TreeNodeController {
             attributes = new HashMap<String, Object>();
             attributes.put("url", t.getUrl());
             node.put("attributes", attributes);
-
             nodes.add(node);
         }
         if ("null".equals(forward)) {

@@ -53,28 +53,7 @@
 
     <!--4) 单独处理图片、样式、js等资源 -->
     <mvc:resources location="/css/" mapping="/css/**"/>
-    <!--<mvc:resources location="/easyui/jquery-easyui-1.5.1/themes/default/" mapping="/css"/>-->
-    <!--<mvc:resources location="/easyui/jquery-easyui-1.5.1/themes/" mapping="/css"/>-->
-    <!--<mvc:resources location="/easyui/jquery-easyui-1.5.1/themes/black/" mapping="/css"/>-->
-    <!--<mvc:resources location="/easyui/jquery-easyui-1.5.1/themes/bootstrap/" mapping="/css"/>-->
-    <!--<mvc:resources location="/easyui/jquery-easyui-1.5.1/themes/gray/" mapping="/css"/>-->
-    <!--<mvc:resources location="/easyui/jquery-easyui-1.5.1/themes/material/" mapping="/css"/>-->
-    <!--<mvc:resources location="/easyui/jquery-easyui-1.5.1/themes/metro/" mapping="/css"/>-->
-
     <mvc:resources location="/images/" mapping="/images/**"/>
-    <!--<mvc:resources location="/easyui/jquery-easyui-1.5.1/themes/black/images/" mapping="/images/**"/>-->
-    <!--<mvc:resources location="/easyui/jquery-easyui-1.5.1/themes/bootstrap/images/" mapping="/images/**"/>-->
-    <!--<mvc:resources location="/easyui/jquery-easyui-1.5.1/themes/default/images/" mapping="/images/**"/>-->
-    <!--<mvc:resources location="/easyui/jquery-easyui-1.5.1/themes/gray/images/" mapping="/images/**"/>-->
-    <!--<mvc:resources location="/easyui/jquery-easyui-1.5.1/themes/icons/" mapping="/images/**"/>-->
-    <!--<mvc:resources location="/easyui/jquery-easyui-1.5.1/themes/material/images/" mapping="/images/**"/>-->
-    <!--<mvc:resources location="/easyui/jquery-easyui-1.5.1/themes/metro/images/" mapping="/images/**"/>-->
-
-
     <mvc:resources location="/js/" mapping="/js/**"/>
-    <!--<mvc:resources location="/easyui/jquery-easyui-1.5.1/" mapping="/js"/>-->
-    <!--<mvc:resources location="/easyui/jquery-easyui-1.5.1/locale/" mapping="/js/**"/>-->
-
-
 
 </beans>

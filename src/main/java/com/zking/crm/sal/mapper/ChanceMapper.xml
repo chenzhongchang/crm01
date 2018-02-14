@@ -56,7 +56,7 @@
       and  chc_title like #{chcTitle,jdbcType=VARCHAR}
     </if>
     <if test="chcCustName != null" >
-      and   chc_cust_name = #{chcCustName,jdbcType=VARCHAR}
+      and   chc_cust_name like #{chcCustName,jdbcType=VARCHAR}
     </if>
     <if test="chcLinkman != null" >
       and   chc_linkman = #{chcLinkman,jdbcType=VARCHAR}

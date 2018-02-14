@@ -10,7 +10,6 @@ public class IndexController {
     @RequestMapping("/index/toIndex")
     public String toIndex(){
 
-        System.out.println("------------------------------------------------------------");
         return "index";
     }
 

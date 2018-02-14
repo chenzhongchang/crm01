@@ -26,7 +26,7 @@ public class ChanceBizImpl implements IChanceBiz {
 
     @Override
     public void editChance(Chance chance) {
-        chanceMapper.insertSelective(chance);
+        chanceMapper.updateByPrimaryKeySelective(chance);
     }
 
     @Override
