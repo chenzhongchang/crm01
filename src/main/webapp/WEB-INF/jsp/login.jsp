@@ -47,11 +47,10 @@
         }
     </script>
 </HEAD>
-<BODY BGCOLOR=#FFFFFF LEFTMARGIN=0 TOPMARGIN=0 MARGINWIDTH=0 MARGINHEIGHT=0 style="text-align:center;padding-top:20px;">
-<TABLE WIDTH=800 BORDER=0 CELLPADDING=0 CELLSPACING=0>
+<BODY BGCOLOR=#FFFFFF style="text-align:center;padding-top:20px;">
+<TABLE WIDTH=800 BORDER=0 CELLPADDING=0 CELLSPACING=0 style=" background-size:cover;" background="images/login/thime.jpg;">
     <TR>
         <TD COLSPAN=7>
-            <IMG SRC="images/login/login_01.jpg" WIDTH=800 HEIGHT=71 ALT=""></TD>
         <TD>
             <IMG SRC="images/login/spacer.gif" WIDTH=1 HEIGHT=71 ALT=""></TD>
     </TR>
@@ -64,7 +63,6 @@
     </TR>
     <TR>
         <TD COLSPAN=7>
-            <IMG SRC="images/login/login_03.jpg" WIDTH=800 HEIGHT=6 ALT=""></TD>
         <TD>
             <IMG SRC="images/login/spacer.gif" WIDTH=1 HEIGHT=6 ALT=""></TD>
     </TR>
@@ -72,7 +70,6 @@
 
         <TD COLSPAN=3>&nbsp; </TD>
         <TD COLSPAN=3 ROWSPAN=2>
-            <IMG SRC="images/login/login_05.jpg" WIDTH=426 HEIGHT=83 ALT=""></TD>
 
         <TD ROWSPAN=3>&nbsp;</TD>
         <TD>
@@ -109,7 +106,6 @@
             </form>
         </TD>
         <TD COLSPAN=2>
-            <IMG SRC="images/login/login_11.jpg" WIDTH=304 HEIGHT=86 ALT=""></TD>
         <TD>
             <IMG SRC="images/login/spacer.gif" WIDTH=1 HEIGHT=86 ALT=""></TD>
     </TR>
@@ -135,9 +131,7 @@
     </TR>
     <TR>
 
-        <TD COLSPAN=7 background="images/login/login_16.jpg" style="text-align:right;padding-right:25px;">
-            &copy; 2008 北京阿博泰克北大青鸟信息技术有限公司
-        </TD>
+
         <TD>
             <IMG SRC="images/login/spacer.gif" WIDTH=1 HEIGHT=55 ALT=""></TD>
     </TR>

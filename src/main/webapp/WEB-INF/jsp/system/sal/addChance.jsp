@@ -48,6 +48,7 @@
         <th>创建人</th>
         <td><input class="easyui-textbox" readonly name="chcCreateBy" value="${usr.usrName}" size="20" data-options="required:true" />
             <input type="hidden" name="chcCreateId" value="${usr.usrId}" />
+            <input type="hidden" name="chcStatus" value="1" />
         </td>
         <th>创建时间</th>
         <td><input readonly disabled="disabled" id="ck" style='width:200px;' value="123"/></td>

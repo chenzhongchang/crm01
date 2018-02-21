@@ -41,6 +41,8 @@ public class Chance {
 
 
     //paramenters
+    private Integer page;
+    private Integer rows;
     private String action;
     private String forward;
     private String cdateName;
@@ -231,6 +233,22 @@ public class Chance {
         this.forward = forward;
     }
 
+    public Integer getPage() {
+        return page;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+
+    public Integer getRows() {
+        return rows;
+    }
+
+    public void setRows(Integer rows) {
+        this.rows = rows;
+    }
+
     @Override
     public String toString() {
         return "Chance{" +
@@ -249,6 +267,9 @@ public class Chance {
                 ", chcDueTo='" + chcDueTo + '\'' +
                 ", chcDueDate=" + chcDueDate +
                 ", chcStatus='" + chcStatus + '\'' +
+                ", page=" + page +
+                ", rows=" + rows +
+                ", forward='" + forward + '\'' +
                 '}';
     }
 }

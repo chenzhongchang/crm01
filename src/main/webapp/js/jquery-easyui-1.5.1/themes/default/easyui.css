@@ -2650,13 +2650,13 @@
   background: url('images/tree_icons.png') no-repeat -82px 0px;
 }
 .tree-expanded-hover {
-  background: url('images/tree_icons.png') no-repeat -50px 0px;
+  background: url('images/tree_icons.png') no-repeat -82px 0px;
 }
 .tree-collapsed {
   background: url('images/tree_icons.png') no-repeat -66px 0px;
 }
 .tree-collapsed-hover {
-  background: url('images/tree_icons.png') no-repeat -32px 0px;
+  background: url('images/tree_icons.png') no-repeat -66px 0px;
 }
 .tree-lines .tree-expanded,
 .tree-lines .tree-root-first .tree-expanded {

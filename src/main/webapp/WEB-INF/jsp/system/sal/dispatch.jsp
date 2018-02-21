@@ -35,54 +35,53 @@
 </div>
 <%--<img onclick='jumpPage("+c.getChcId()+")' title='编辑'src='images/bt_edit.gif ' style="width: 12px;height: 12px;" class='op_button' />--%>
 
-<form id="dispatch" method="post" name="chance">
     <table class="query_form_table">
         <tr>
             <th>编号</th>
             <td>${chance.chcId}
-                <input type="hidden" name="chcId" value="${chance.chcId}" />
             </td>
             <th>机会来源</th>
             <td>
-                <input type="hidden" name="chcSource" value="${chance.chcSource}" />${chance.chcSource}
+                ${chance.chcSource}
             </td>
         </tr>
         <tr>
             <th>客户名称</th>
-            <td> <input type="hidden" name="chcCustName" value="${chance.chcCustName}" />${chance.chcCustName}</td>
+            <td>  ${chance.chcCustName}</td>
             <th>成功机率</th>
-            <td><input type="hidden" name="chcRate" value="${chance.chcRate}" />${chance.chcRate}</td>
+            <td> ${chance.chcRate}</td>
         </tr>
         <tr>
             <th>概要</th>
-            <td colspan="3"><input type="hidden" name="chcTitle" value="${chance.chcTitle}" />${chance.chcTitle}</td>
+            <td colspan="3"> ${chance.chcTitle}</td>
         </tr>
         <tr>
             <th>联系人</th>
-            <td><input type="hidden" name="chcLinkman" value="${chance.chcLinkman}" />${chance.chcLinkman}</td>
+            <td> ${chance.chcLinkman}</td>
             <th>联系人电话</th>
-            <td><input type="hidden" name="chcTel" value="${chance.chcTel}" />${chance.chcTel}</td>
+            <td> ${chance.chcTel}</td>
         </tr>
         <tr>
             <th>机会描述</th>
-            <td colspan="3"><input type="hidden" name="chcDesc" value="${chance.chcDesc}" />${chance.chcDesc}</td>
+            <td colspan="3"> ${chance.chcDesc}</td>
         </tr>
         <tr>
             <th>创建人</th>
-            <td><input type="hidden" name="chcCreateBy" value="${chance.chcCreateBy}" />${chance.chcCreateBy}
-                <input type="hidden" name="chcCreateId" value="${chance.chcCreateId}" />
+            <td> ${chance.chcCreateBy}
             </td>
             <th>创建时间</th>
             <td>${chance.cdateName}
-                <input type="hidden" name="chcCreateDate" value="${chance.chcCreateDate}"/>
             </td>
         </tr>
     </table>
     <br />
+<form id="dispatch" method="post" name="chance">
     <table disabled class="query_form_table" id="table1">
         <tr>
             <th>指派给</th>
             <td>
+                <input type="hidden" name="chcId" value="${chance.chcId}" />
+                <input type="hidden" name="chcStatus" value="2" />
                 <f:select path="chance.chcDueId" >
                     <f:option value="">--请选择--</f:option>
                     <f:options items="${listUser}" itemLabel="usrName" itemValue="usrId"/>

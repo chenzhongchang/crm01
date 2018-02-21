@@ -1,5 +1,7 @@
 package com.zking.crm.sal.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Plan {
@@ -12,6 +14,12 @@ public class Plan {
     private String plaTodo;
 
     private String plaResult;
+
+
+    //parameters
+    private String forward;
+    private String pdateName;
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
 
     public Plan(Long plaId, Long plaChcId, Date plaDate, String plaTodo, String plaResult) {
         this.plaId = plaId;
@@ -48,6 +56,13 @@ public class Plan {
     public void setPlaDate(Date plaDate) {
         this.plaDate = plaDate;
     }
+    public void setPlaDate(String plaDate) {
+        try {
+            this.plaDate =  sdf.parse(plaDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
 
     public String getPlaTodo() {
         return plaTodo;
@@ -63,5 +78,34 @@ public class Plan {
 
     public void setPlaResult(String plaResult) {
         this.plaResult = plaResult;
+    }
+
+    public String getPdateName() {
+        return pdateName;
+    }
+
+    public void setPdateName(String pdateName) {
+        this.pdateName = pdateName;
+    }
+
+    public String getForward() {
+        return forward;
+    }
+
+    public void setForward(String forward) {
+        this.forward = forward;
+    }
+
+    @Override
+    public String
+    toString() {
+        return "Plan{" +
+                "plaId=" + plaId +
+                ", plaChcId=" + plaChcId +
+                ", plaDate=" + plaDate +
+                ", plaTodo='" + plaTodo + '\'' +
+                ", plaResult='" + plaResult + '\'' +
+                ", pdateName='" + pdateName + '\'' +
+                '}';
     }
 }

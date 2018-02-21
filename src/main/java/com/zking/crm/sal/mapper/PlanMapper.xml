@@ -10,6 +10,13 @@
       <arg column="pla_result" jdbcType="NVARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
+  <resultMap id="row" type="com.zking.crm.sal.model.Plan" >
+      <id property="plaId" column="pla_id" javaType="java.lang.Long" />
+      <result property="plaChcId" column="pla_chc_id" javaType="java.lang.Long" />
+      <result property="plaDate" column="pla_date" javaType="java.util.Date" />
+      <result property="plaTodo" column="pla_todo" javaType="java.lang.String" />
+      <result property="plaResult" column="pla_result" javaType="java.lang.String" />
+  </resultMap>
   <sql id="Base_Column_List" >
     pla_id, pla_chc_id, pla_date, pla_todo, pla_result
   </sql>
@@ -18,6 +25,11 @@
     <include refid="Base_Column_List" />
     from sal_plan
     where pla_id = #{plaId,jdbcType=BIGINT}
+  </select>
+  <select id="list" resultMap="row" parameterType="com.zking.crm.sal.model.Plan" >
+    select
+    <include refid="Base_Column_List" />
+    from sal_plan where pla_chc_id = #{plaChcId,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from sal_plan

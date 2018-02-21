@@ -52,14 +52,17 @@
     select
     <include refid="Base_Column_List" />
     from sal_chance where 1=1
-    <if test="chcTitle != null" >
+    <if test="chcTitle != null and chcTitle!=''" >
       and  chc_title like #{chcTitle,jdbcType=VARCHAR}
     </if>
-    <if test="chcCustName != null" >
+    <if test="chcCustName != null and chcCustName!=''" >
       and   chc_cust_name like #{chcCustName,jdbcType=VARCHAR}
     </if>
-    <if test="chcLinkman != null" >
+    <if test="chcLinkman != null and chcLinkman!=''" >
       and   chc_linkman = #{chcLinkman,jdbcType=VARCHAR}
+    </if>
+    <if test="forward != null and forward!=''" >
+      and  chc_status != '1' and chc_status is not null
     </if>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
